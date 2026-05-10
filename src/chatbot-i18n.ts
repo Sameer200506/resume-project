@@ -341,7 +341,7 @@ Producción
           },
           {
             q: '¿Cuánto costó construirlo?',
-            a: '$0 en infraestructura: usa los free tiers de Vercel (edge functions), Supabase (pgvector RAG) y Langfuse Cloud (observabilidad). El único coste variable son las APIs de LLM: menos de $0.005 por conversación texto y ~$0.25 por sesión de voz (OpenAI Realtime). Construido por una sola persona usando Claude Code. Coste total marginal típico: $5-15 al mes para tráfico orgánico de portfolio.',
+            a: '$0 en infraestructura: usa los free tiers de Vercel (edge functions), Supabase (pgvector RAG) y Langfuse Cloud (observabilidad). El único coste variable son las APIs de LLM: menos de $0.005 por conversación de texto y ~$0.25 por sesión de voz (OpenAI Realtime). Construido por una sola persona usando Claude Code, sin equipo ni budget de proyecto.',
           },
           {
             q: '¿Por qué Claude y no GPT-4 o Gemini?',
@@ -708,7 +708,7 @@ Production
           },
           {
             q: 'How much did it cost to build?',
-            a: '$0 in infrastructure: free tiers from Vercel (edge functions), Supabase (pgvector RAG), and Langfuse Cloud (observability). The only variable cost is LLM APIs: under $0.005 per text conversation and ~$0.25 per voice session (OpenAI Realtime). Built solo using Claude Code. Typical marginal cost: $5-15/month for organic portfolio traffic.',
+            a: '$0 in infrastructure: free tiers from Vercel (edge functions), Supabase (pgvector RAG), and Langfuse Cloud (observability). The only variable cost is LLM APIs: under $0.005 per text conversation and ~$0.25 per voice session (OpenAI Realtime). Built solo using Claude Code, no team and no project budget.',
           },
           {
             q: 'Why Claude and not GPT-4 or Gemini?',

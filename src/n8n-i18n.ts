@@ -202,7 +202,7 @@ export const n8nContent = {
         },
         {
           q: '¿n8n es gratis?',
-          a: 'Sí, self-hosted es gratis para siempre bajo licencia Sustainable Use (open core, sin límites de workflows ni ejecuciones). Lo único que pagas es tu servidor: una VM de 5 €/mes en Hetzner cubre la mayoría de PYMEs. La versión cloud incluye 14 días de prueba sin tarjeta y luego planes desde 24 €/mes. Para los workflows de este artículo el trial cubre de sobra; para uso continuo, self-hosted en Hetzner sale más barato a partir del segundo mes.',
+          a: 'Sí, self-hosted es gratis para siempre bajo licencia Sustainable Use (open core, sin límites de workflows ni ejecuciones). Lo único que pagas es la VPS donde lo despliegues. La versión cloud incluye 14 días de prueba sin tarjeta y luego planes desde 24 €/mes. Para los workflows de este artículo el trial cubre de sobra; para uso continuo en una PYME, self-hosted suele salir más barato a partir del segundo mes.',
         },
         {
           q: '¿Qué LLM debería usar para el clasificador?',
@@ -415,7 +415,7 @@ export const n8nContent = {
         },
         {
           q: 'Is n8n free?',
-          a: 'Yes, self-hosted is free forever under the Sustainable Use license (open core, no workflow or execution limits). The only thing you pay for is your server: a €5/month Hetzner VM covers most SMBs. The cloud version includes a 14-day free trial without a credit card and plans starting at €24/month. The trial is more than enough for the workflows in this article; for continuous use, self-hosted on Hetzner pays off from month two.',
+          a: 'Yes, self-hosted is free forever under the Sustainable Use license (open core, no workflow or execution limits). The only thing you pay for is the VPS where you deploy it. The cloud version includes a 14-day free trial without a credit card and plans starting at €24/month. The trial is more than enough for the workflows in this article; for continuous use in an SMB, self-hosted usually pays off from month two.',
         },
         {
           q: 'What LLM should I use for the classifier?',
