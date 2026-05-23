@@ -692,7 +692,7 @@ const NAV_ITEMS = [
 // ─── Main Admin Panel ────────────────────────────────────────────────────────
 
 export default function AdminPanel() {
-  const { data, isAdmin, hasChanges, logout, updateData, saveChanges, discardChanges, resetToDefault } = useAdmin()
+  const { data, isAdmin, hasChanges, dbStatus, dbErrorMsg, logout, updateData, saveChanges, discardChanges, resetToDefault } = useAdmin()
   const navigate = useNavigate()
   const [activeSection, setActiveSection] = useState('personal')
   const [showResetConfirm, setShowResetConfirm] = useState(false)
@@ -743,7 +743,19 @@ export default function AdminPanel() {
           </div>
           <div>
             <p className="text-xs font-semibold" style={{ color: 'hsl(var(--foreground))' }}>Admin Panel</p>
-            <p className="text-xs" style={{ color: 'hsl(var(--muted-foreground))' }}>Portfolio Editor</p>
+            <div className="flex items-center gap-1.5 mt-0.5" title={dbStatus === 'error' ? dbErrorMsg : undefined}>
+              <span className={`w-1.5 h-1.5 rounded-full ${
+                dbStatus === 'connected' ? 'bg-green-500' :
+                dbStatus === 'fallback' ? 'bg-amber-500' : 'bg-red-500 animate-pulse'
+              }`} />
+              <span className="text-[10px] font-mono tracking-tight" style={{ 
+                color: dbStatus === 'connected' ? 'hsl(142 71% 45%)' :
+                       dbStatus === 'fallback' ? 'hsl(38 92% 50%)' : 'hsl(0 72% 50%)'
+              }}>
+                {dbStatus === 'connected' ? 'DB Connected' :
+                 dbStatus === 'fallback' ? 'Local Storage' : 'DB Sync Error'}
+              </span>
+            </div>
           </div>
         </div>
 

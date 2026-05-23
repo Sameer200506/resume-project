@@ -5,6 +5,8 @@ interface AdminContextType {
   data: PortfolioData
   isAdmin: boolean
   hasChanges: boolean
+  dbStatus: 'connected' | 'fallback' | 'error'
+  dbErrorMsg: string
   login: (password: string) => boolean
   logout: () => void
   updateData: (updater: (prev: PortfolioData) => PortfolioData) => void
@@ -24,6 +26,8 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
   const [savedData, setSavedData] = useState<PortfolioData>(data)
   const [isAdmin, setIsAdmin] = useState(() => sessionStorage.getItem(ADMIN_SESSION_KEY) === 'true')
   const [hasChanges, setHasChanges] = useState(false)
+  const [dbStatus, setDbStatus] = useState<'connected' | 'fallback' | 'error'>('fallback')
+  const [dbErrorMsg, setDbErrorMsg] = useState('')
 
   // Fetch portfolio data from Supabase via Vercel Edge API on load
   useEffect(() => {
@@ -32,14 +36,26 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
         const res = await fetch('/api/portfolio/get')
         if (res.ok) {
           const body = await res.json()
-          if (body.data) {
+          if (body.error) {
+            setDbStatus('fallback')
+            setDbErrorMsg(body.error)
+          } else if (body.data) {
+            setDbStatus('connected')
             const merged = { ...defaultPortfolioData, ...body.data }
             setData(merged)
             setSavedData(merged)
             savePortfolioData(merged)
+          } else {
+            setDbStatus('connected') // connected, but empty data
           }
+        } else {
+          setDbStatus('error')
+          const body = await res.json().catch(() => ({}))
+          setDbErrorMsg(body.error || 'Server error loading data')
         }
       } catch (err) {
+        setDbStatus('error')
+        setDbErrorMsg(err instanceof Error ? err.message : 'Network error')
         console.error('Failed to fetch live portfolio data from Supabase:', err)
       }
     }
@@ -116,7 +132,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <AdminContext.Provider value={{
-      data, isAdmin, hasChanges,
+      data, isAdmin, hasChanges, dbStatus, dbErrorMsg,
       login, logout, updateData, saveChanges, discardChanges, resetToDefault
     }}>
       {children}
